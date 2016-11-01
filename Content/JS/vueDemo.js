@@ -1,11 +1,22 @@
 $(document).ready(function () {
+	//initialData();
 	createMarkdown();
 	dataBind();
 	forBind();
 	ifBind();
 	methodBind();
-	
+
 });
+
+function initialData() {
+	window.localStorage.menuList = JSON.stringify([{
+		"text": "menuItem01"
+	}, {
+		"text": "menuItem02"
+	}, {
+		"text": "menuItem03"
+	}]);
+};
 
 function createMarkdown() {
 	var markDown = new Vue({
@@ -39,16 +50,11 @@ function dataBind() {
 };
 
 function forBind() {
+	var listData = JSON.parse(localStorage.menuList);
 	var listApp = new Vue({
 		el: "#dataList",
 		data: {
-			todos: [{
-				text: "ZSW"
-			}, {
-				text: "Daemon"
-			}, {
-				text: "Both"
-			}, ]
+			todos: listData
 		}
 	});
 };

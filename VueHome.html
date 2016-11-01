@@ -2,53 +2,75 @@
 <html lang="zh-cn">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>VuejsDemo</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="Content/CSS/vueDemo.css"></link>
 	<!--Bootstrap4.0 alpha-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
 					crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="Content/CSS/vueDemo.css"></link>
 </head>
 
 <body>
+	<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+		<button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar" aria-label="Toggle navigation"></button>
+		<a class="navbar-brand" href="#">呆萌的部落格</a>
+		<div id="navbar">
+			<div class="nav navbar-nav float-xs-left">
+				<a class="nav-item nav-link" href="#">Daemon01</a>
+				<a class="nav-item nav-link" href="#">Daemon02</a>
+				<a class="nav-item nav-link" href="#">Daemon03</a>
+				<a class="nav-item nav-link" href="#">Daemon04</a>
+			</div>
+			<form class="float-xs-right">
+				<input type="text" class="form-control">
+			</form>
+		</div>
+	</nav>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-12">
-				<div id="editor">
-					<textarea :value="input" @input="update"></textarea>
-					<div v-html="compiledMarkdown"></div>
-				</div>
-			</div>
-		</div>
-		<div id="twoWayBinding" class="row">
-			<div class="col-lg-3">
-				<label>{{Message}}</label>
-			</div>
-			<div class="col-lg-3">
-				<input type="text" v-model="Message" />
-			</div>
-			<div class="col-lg-3">
-				<span v-bind:title="title">Hover your mouse here!!</span>
-			</div>
-		</div>
-		<div class="row">
-			<div id="dataList" class="col-lg-3">
-				<ul>
+			<div id="dataList" class="col-lg-2 sidebar">
+				<ul class="nav nav-sidebar">
 					<li v-for="todo in todos">
-						{{todo.text}}
+						<a href="#">{{todo.text}}</a>
 					</li>
 				</ul>
 			</div>
-			<div id="ifApp" class="col-lg-3">
-				<span v-if="seen">看见了么</span>
+			<div class="col-lg-10 offset-lg-2 main">
+				<h1>Bindings</h1>
+				<div class="row">
+					<div id="ifApp" class="col-lg-6">
+						<span v-if="seen">看见了么</span>
+					</div>
+					<div id="methodApp" class="col-lg-6">
+						<label>{{inputDisplay}}</label>
+						<input v-on:input="inputChange">
+					</div>
+				</div>
+				<div id="twoWayBinding" class="row">
+					<div class="col-lg-3">
+						<label>{{Message}}</label>
+					</div>
+					<div class="col-lg-3">
+						<input type="text" v-model="Message" />
+					</div>
+					<div class="col-lg-3">
+						<span v-bind:title="title">Hover your mouse here!!</span>
+					</div>
+				</div>
+				<h1>MarkDown Editor</h1>
+				<div class="row">
+					<div class="col-lg-12">
+						<div id="editor">
+							<textarea :value="input" @input="update"></textarea>
+							<div v-html="compiledMarkdown"></div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="methodApp" class="col-lg-3">
-				<label>{{inputDisplay}}</label>
-				<input v-on:input="inputChange">
-			</div>
-		</div>
-		<div class="row">
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
